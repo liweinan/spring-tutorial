@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+	http://www.springframework.org/schema/security 
+	http://www.springframework.org/schema/security/spring-security-2.0.1.xsd">
+
+	<!-- Configure Spring Security -->
+	<http auto-config="true">
+		<concurrent-session-control max-sessions="1" />
+		<intercept-url pattern="/web/addclazz*"
+			access="ROLE_CLASS_MANAGER" />
+		<intercept-url pattern="/web/search*" access="ROLE_SEARCHER" />
+		<form-login login-page="/web/login"
+			login-processing-url="/web/loginProcess"
+			default-target-url="/index.jsp"
+			authentication-failure-url="/web/login?login_error=1" />
+		<logout logout-url="/web/logout"
+			logout-success-url="/web/logoutSuccess" />
+	</http>
+
+	<authentication-provider user-service-ref='userDetailsService'>
+		<password-encoder hash="md5" />
+	</authentication-provider>
+
+	<beans:bean id="userDetailsService"
+		class="org.springframework.security.userdetails.jdbc.JdbcDaoImpl">
+		<beans:property name="dataSource" ref="dataSource" />
+	</beans:bean>
+</beans:beans>

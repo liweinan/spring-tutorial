@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+	"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<definition name="viewRegistrations" extends="standardLayout">
+		<put-attribute name="header" value="/common/header.jsp" />
+		<put-attribute name="body" value="/view/viewRegistrations.jsp" />
+		<put-attribute name="footer" value="/common/footer.jsp" />
+	</definition>
+	<definition name="authNForm" extends="standardLayout">
+		<put-attribute name="header" value="/common/header.jsp" />
+		<put-attribute name="body" value="/view/authNForm.jsp" />
+		<put-attribute name="footer" value="/common/footer.jsp" />
+	</definition>
+	<definition name="clazzForm" extends="standardLayout">
+		<put-attribute name="header" value="/common/header.jsp" />
+		<put-attribute name="body" value="/view/clazzForm.jsp" />
+		<put-attribute name="footer" value="/common/footer.jsp" />
+	</definition>
+	<definition name="login" extends="standardLayout">
+		<put-attribute name="header" value="/common/header.jsp" />
+		<put-attribute name="body" value="/view/login.jsp" />
+		<put-attribute name="footer" value="/common/footer.jsp" />
+	</definition>
+	<definition name="logoutSuccess" extends="standardLayout">
+		<put-attribute name="header" value="/common/header.jsp" />
+		<put-attribute name="body" value="/view/logoutSuccess.jsp" />
+		<put-attribute name="footer" value="/common/footer.jsp" />
+	</definition>
+	<definition name="registrationForm" extends="standardLayout">
+		<put-attribute name="header" value="/common/header.jsp" />
+		<put-attribute name="body" value="/view/registrationForm.jsp" />
+		<put-attribute name="footer" value="/common/footer.jsp" />
+	</definition>
+	<definition name="search" extends="standardLayout">
+		<put-attribute name="header" value="/common/header.jsp" />
+		<put-attribute name="body" value="/view/search.jsp" />
+		<put-attribute name="footer" value="/common/footer.jsp" />
+	</definition>
+</tiles-definitions>

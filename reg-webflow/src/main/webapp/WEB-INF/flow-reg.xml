@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow start-state="registrationForm"
+	xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow 
+	http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	<secured attributes="ROLE_USER" />
+
+	<persistence-context />
+
+	<on-start>
+		<evaluate expression="registrationDao.create()"
+			result="flowScope.registration" />
+	</on-start>
+
+	<view-state id="registrationForm" model="registration">
+		<on-entry>
+			<evaluate expression="clazzDao.load()"
+				result="viewScope.clazzList" />
+		</on-entry>
+		<transition on="proceed" to="finished">
+			<evaluate
+				expression="persistenceContext.merge(registration)" />
+		</transition>
+		<transition on="addClazz" to="addClazz" />
+		<transition on="cancel" to="cancelled" />
+	</view-state>
+
+	<subflow-state id="addClazz" subflow="flowclazz">
+		<transition on="clazzSaved" to="registrationForm" />
+		<transition on="cancelled" to="registrationForm" />
+	</subflow-state>
+
+	<end-state id="finished" commit="true" />
+
+	<end-state id="cancelled" />
+
+</flow>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+	http://www.springframework.org/schema/security 
+	http://www.springframework.org/schema/security/spring-security-2.0.1.xsd">
+
+
+	<!-- Configure Spring Security -->
+	<http auto-config="true">
+		<intercept-url pattern="/addClazz.html*" access="ROLE_CLASS_MANAGER" />
+		<intercept-url pattern="/search.html*" access="ROLE_SEARCHER" />
+	</http>
+
+	<authentication-provider>
+		<password-encoder hash="md5" />
+		<user-service>
+			<user name="tom" password="d077f244def8a70e5ea758bd8352fcd8"
+				authorities="ROLE_CLASS_MANAGER" />
+			<user name="peter"
+				password="06d80eb0c50b49a509b49f2424e8c805"
+				authorities="ROLE_SEARCHER" />
+		</user-service>
+	</authentication-provider>
+
+</beans:beans>
